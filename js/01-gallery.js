@@ -9,7 +9,7 @@ console.log(galleryEl);
 console.log(galleryItems);
 
 
-/*  шаблон элемента галереи
+/*  шаблон элемента галереи по которому создается список картинок
 
 <div class="gallery__item">
   <a class="gallery__link" href="large-image.jpg">
