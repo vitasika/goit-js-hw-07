@@ -62,9 +62,8 @@ console.log(instance);
 function ESCclose(evet) {
   if (evet.key === 'Escape')
     instance.close();
-    console.log('esc');
-   
- }
+  console.log('esc');
+}
 
 /*  шаблон элемента галереи по которому создается список картинок
 <div class="gallery__item">
