@@ -33,28 +33,38 @@ console.log(galleryEl);
 
 
 
-import * as basicLightbox from 'basiclightbox'
+/*import * as basicLightbox from 'basiclightbox'
 
 const instance = basicLightbox.create(`
 
     <img src="assets/images/image.png" width="800" height="600">
 `)
 
-instance.show()
-
-
+instance.show()*/
 
 
 const options = {
-  onShow: () => { window.addEventListener('keydown', функция по закрытию на esc); }, onClose: () => {
-    window.removeEventListener('keydown', функция по закрытию на esc);
-  },
+  onShow: () => {
+    window.addEventListener('keydown', ESCclose);
+  }, onClose: () => { window.removeEventListener('keydown', ESCclose); },
+  
 };
 
 
 // Добавляет класс modal и размер картинки в html
-const instance = basicLightbox.create(`<div class="modal"> <img width="1400" height="900" src=""></div>`, options); 
+const instance = basicLightbox.create(`
+<div class="modal"> <img width="1400" height="900" src=""></div>`,
+  options); 
 
+console.log(instance);
+
+
+function ESCclose(evet) {
+  if (evet.key === 'Escape')
+    instance.close();
+    console.log('esc');
+   
+ }
 
 /*  шаблон элемента галереи по которому создается список картинок
 <div class="gallery__item">
