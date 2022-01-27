@@ -38,12 +38,14 @@ const instance = basicLightbox.create(`
   <div class="modal"> <img width="1400" height="900" src=""></div>`,
     options); 
 
-
-
 instance.show();
 
-function ESCclose(evet) {
-  if (evet.key === 'Escape')
+
+const originalImgEl = e.target.dataset.source;
+ 
+
+function ESCclose(event) {
+  if (event.key === 'Escape')
     instance.close();
   console.log('esc');
 }
@@ -51,7 +53,9 @@ function ESCclose(evet) {
 
 
 // ПРОВЕРКИ-----
-//console.log(instance); //работает
+
+console.log(originalImgEl); //работает
+// console.log(instance); //работает
 // console.log(galleryEl); //работает
 // console.log(galleryItems); //работает
 // console.log(galleryCardEl); //работает
