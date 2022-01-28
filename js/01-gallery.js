@@ -3,7 +3,7 @@ import { galleryItems } from './gallery-items.js';
 
 
   // Найти строку в html с названием class="gallery"
-  const galleryEl = document.querySelector('.gallery');
+  const galleryEl = document.querySelector('.gallery');  
 
   //Преобразовал galleryItems в одну строку с параметрами
   const galleryCardEl = galleryItems.map(({ preview, original, description }) => {
@@ -21,7 +21,7 @@ import { galleryItems } from './gallery-items.js';
   });
 
   //Добавляю galleryCardEl с разметкой по очереди во все карточки
-  const allCardCreateEl = (galleryCardEl).join('');
+  const allCardCreateEl = (galleryCardEl).join(''); 
 
   // Добавляет все карточки в html ("beforeend" - внутри elem, после всех детей)
   galleryEl.insertAdjacentHTML('beforeend', allCardCreateEl);
@@ -39,6 +39,8 @@ import { galleryItems } from './gallery-items.js';
 function clickElCard(event) {
   event.preventDefault();
 
+  if (event.target.nodeName !== 'IMG') return;   
+
   if (originalImgEl = event.target.dataset.source) {
     return
   }
@@ -51,19 +53,19 @@ function clickElCard(event) {
   instance.show();
 }
 
-
-
-
-
   function ESCclose(event) {
-    if (event.key === 'Escape')
-      instance.close();
-    console.log('esc');
-  }
+    if (event.key === 'Escape') {instance.close(); return;}    
+}
+  
+galleryEl.addEventListener("click", clickElCard);
+  
+
+
 
 
 
   // ПРОВЕРКИ-----
+  // console.log(ESCclose);
   // console.log(clickElCard); //работает
   // console.log(originalImgEl); //работает
   // console.log(instance); //работает
