@@ -1,9 +1,8 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-
   // Найти строку в html с названием class="gallery"
-  const galleryEl = document.querySelector('.gallery');  
+  const galleryEl = document.querySelector(".gallery");  
 
   //Преобразовал galleryItems в одну строку с параметрами
   const galleryCardEl = galleryItems.map(({ preview, original, description }) => {
@@ -21,47 +20,38 @@ import { galleryItems } from './gallery-items.js';
   });
 
   //Добавляю galleryCardEl с разметкой по очереди во все карточки
-  const allCardCreateEl = (galleryCardEl).join(''); 
+  const allCardCreateEl = (galleryCardEl).join(""); 
 
   // Добавляет все карточки в html ("beforeend" - внутри elem, после всех детей)
   galleryEl.insertAdjacentHTML('beforeend', allCardCreateEl);
-
   const options = {
     onShow: () => {
       window.addEventListener('keydown', ESCclose);
-    }, onClose: () => { window.removeEventListener('keydown', ESCclose); },
+    },
+    onClose: () => {
+      window.removeEventListener('keydown', ESCclose);
+    },  
+};
   
-  };
-
-
   // Добавляет класс modal и размер картинки в html
-
 function clickElCard(event) {
   event.preventDefault();
-
-  if (event.target.nodeName !== 'IMG') return;   
-
-  if (originalImgEl = event.target.dataset.source) {
-    return
-  }
-  
+  if (event.target.nodeName !== 'IMG') return;
+  let originalImgEl = event.target.dataset.source;  
   const instance = basicLightbox.create(`
-  <div class="modal"> <img width="1400" height="900" src= ${originalImgEl}></div>`,
-        
+  <div class="modal"> <img width="1400" height="900" src= ${originalImgEl}></div>`,        
     options);
-
   instance.show();
 }
 
   function ESCclose(event) {
-    if (event.key === 'Escape') {instance.close(); return;}    
+    if (event.key === 'Escape') {
+      instance.close();
+      return;
+    }    
 }
   
 galleryEl.addEventListener("click", clickElCard);
-  
-
-
-
 
 
   // ПРОВЕРКИ-----
@@ -163,3 +153,53 @@ galleryEl.addEventListener("click", clickElCard);
 // };
 
 }
+
+/*
+// Найти строку в html с названием class="gallery"
+const galleryEl = document.querySelector(".gallery");
+//Преобразовал galleryItems в одну строку с параметрами
+const galleryCardEl = galleryItems.map(({ preview, original, description }) => {
+    return `
+  <div class="gallery__item">
+    <a class="gallery__link" href="${original}">
+      <img
+        class="gallery__image"
+        src="${preview}"
+        data-source="${original}"
+        alt="${description}"
+      />
+    </a>
+  </div>`;
+});
+
+//Добавляю galleryCardEl с разметкой по очереди во все карточки
+const allCardCreateEl = galleryCardEl.join("");
+
+// Добавляет все карточки в html ("beforeend" - внутри elem, после всех детей)
+galleryEl.insertAdjacentHTML("beforeend", allCardCreateEl);
+const options = {
+    onShow: () => {
+        window.addEventListener("keydown", ESCclose);
+    },
+    onClose: () => {
+        window.removeEventListener("keydown", ESCclose);
+    },
+};
+// Добавляет класс modal и размер картинки в html
+function clickElCard(event) {
+    event.preventDefault();
+    if (event.target.nodeName !== "IMG") return;
+    let originalImgEl = event.target.dataset.source;
+    const instance = basicLightbox.create(`
+  <div class="modal"> <img width="1200" height="800" src= ${originalImgEl}></div>`,
+        options);
+    instance.show();
+}
+function ESCclose(event) {
+    if (event.key === "Escape") {
+        instance.close();
+        return;
+    }
+}
+galleryEl.addEventListener("click", clickElCard);
+*/
