@@ -90,6 +90,9 @@ galleryEl.addEventListener("click", clickElCard);
   */
 
 
+ 
+
+
 
 
 
