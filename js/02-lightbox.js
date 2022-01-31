@@ -4,8 +4,9 @@ import { galleryItems } from './gallery-items.js';
 // console.log(galleryItems);
 
 // Найти строку в html с названием class="gallery"
-  const galleryEl = document.querySelector(".gallery");  
+const galleryEl = document.querySelector(".gallery");  
 
+console.log(galleryEl);
 
   //Преобразовал galleryItems в одну строку с параметрами
 const galleryCardEl = galleryItems.map(({ preview, original, description }) => {
@@ -13,7 +14,7 @@ const galleryCardEl = galleryItems.map(({ preview, original, description }) => {
     <a class="gallery__item" href=""${original}">
         <img class="gallery__image" src="${preview}" alt="${description}" />
     </a>`
-});
+}).join('');
 
+console.log(galleryCardEl);
 
-  
