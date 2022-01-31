@@ -36,11 +36,15 @@ import { galleryItems } from './gallery-items.js';
   // Добавляет класс modal и размер картинки в html
 function clickElCard(event) {
   event.preventDefault();
+  
   if (event.target.nodeName !== 'IMG') return;
+
   let originalImgEl = event.target.dataset.source;  
+
   const instance = basicLightbox.create(`
-  <div class="modal"> <img width="1400" height="900" src= ${originalImgEl}></div>`,        
+  <img width="1200" height="800" src= ${originalImgEl}></div>`,        
     options);
+  
   instance.show();
 }
 
