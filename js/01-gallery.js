@@ -1,6 +1,8 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
+let instance;
+
   // Найти строку в html с названием class="gallery"
   const galleryEl = document.querySelector(".gallery");  
 
@@ -26,37 +28,38 @@ import { galleryItems } from './gallery-items.js';
 galleryEl.insertAdjacentHTML('beforeend', allCardCreateEl);
   
 
-  const options = {
-    onShow: () => {
-      window.addEventListener('keydown', ESCclose);
-    },
-    onClose: () => {
-      window.removeEventListener('keydown', ESCclose);
-    },  
-};
+//   const options = {
+//     onShow: () => {
+//       window.addEventListener('keydown', onEscKeyPress);
+//     },
+//     onClose: () => {
+//       window.removeEventListener('keydown', onEscKeyPress);
+//     },  
+// };
   
   // Добавляет класс modal и размер картинки в html
+
+
 function clickElCard(event) {
   event.preventDefault();
-  
+  window.addEventListener('keydown', onEscKeyPress);
 
   if (event.target.nodeName !== 'IMG') return;
   // window.addEventListener('keydown', onEscKeyPress);
 
   let originalImgEl = event.target.dataset.source;  
 
-  const instance = basicLightbox.create(`
-  <img width="1200" height="800" src= ${originalImgEl}></div>`,        
-    options);
+  instance = basicLightbox.create(`
+  <img width="1200" height="800" src= ${originalImgEl}></div>`/*, options*/);
   
   instance.show();
 }
 
-  function ESCclose(event) {
+  function onEscKeyPress(event) {
     if (event.code === 'Escape') {      
       instance.close();
 
-      window.removeEventListener('keydown', ESCclose);
+      window.removeEventListener('keydown', onEscKeyPress);
 
       return;
     };
