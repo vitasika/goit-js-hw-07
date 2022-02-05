@@ -13,7 +13,7 @@ galleryEl.addEventListener('click', onGalleryCardClick);
   //Преобразовал galleryItems в одну строку с параметрами
 const galleryCardEl = galleryItems.map(({ preview, original, description }) => {
     return `
-    <a class="gallery__item" href=""${original}">
+    <a class="gallery__item" href="${original}">
         <img class="gallery__image" src="${preview}" alt="${description}" />
     </a>`
 });
@@ -25,7 +25,9 @@ const allCardCreateEl = (galleryCardEl).join('');
   
 // console.log(allCardCreateEl);
 
+//Добавляю galleryEl в разметку html ("beforeend" - внутри elem, после всех детей)
 galleryEl.insertAdjacentHTML('beforeend', allCardCreateEl);
+
 
 //Ф-ция:
 //     отменяет действия браузера по умолчанию;

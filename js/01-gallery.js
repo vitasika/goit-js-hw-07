@@ -23,7 +23,9 @@ import { galleryItems } from './gallery-items.js';
   const allCardCreateEl = (galleryCardEl).join(""); 
 
   // Добавляет все карточки в html ("beforeend" - внутри elem, после всех детей)
-  galleryEl.insertAdjacentHTML('beforeend', allCardCreateEl);
+galleryEl.insertAdjacentHTML('beforeend', allCardCreateEl);
+  
+
   const options = {
     onShow: () => {
       window.addEventListener('keydown', ESCclose);
@@ -37,7 +39,9 @@ import { galleryItems } from './gallery-items.js';
 function clickElCard(event) {
   event.preventDefault();
   
+
   if (event.target.nodeName !== 'IMG') return;
+  // window.addEventListener('keydown', onEscKeyPress);
 
   let originalImgEl = event.target.dataset.source;  
 
@@ -49,11 +53,16 @@ function clickElCard(event) {
 }
 
   function ESCclose(event) {
-    if (event.key === 'Escape') {
+    if (event.code === 'Escape') {      
       instance.close();
+
+      window.removeEventListener('keydown', ESCclose);
+
       return;
-    }    
-}
+    };
+};
+
+
   
 galleryEl.addEventListener("click", clickElCard);
 
