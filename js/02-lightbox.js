@@ -5,9 +5,10 @@ import { galleryItems } from './gallery-items.js';
 // console.log(galleryItems);
 
 // Найти строку в html с названием class="gallery"
-const galleryEl = document.querySelector('.gallery');  
-
+const galleryEl = document.querySelector('.gallery');
 console.log(galleryEl);
+
+galleryEl.addEventListener('click', onGalleryCardClick);
 
   //Преобразовал galleryItems в одну строку с параметрами
 const galleryCardEl = galleryItems.map(({ preview, original, description }) => {
@@ -22,7 +23,25 @@ const galleryCardEl = galleryItems.map(({ preview, original, description }) => {
 //Добавляю galleryCardEl с разметкой по очереди во все карточки
 const allCardCreateEl = (galleryCardEl).join(''); 
   
-console.log(allCardCreateEl);
+// console.log(allCardCreateEl);
+
+galleryEl.insertAdjacentHTML('beforeend', allCardCreateEl);
+
+//Ф-ция:
+//     отменяет действия браузера по умолчанию;
+//     проверяет условие клика по элементу img (не реагирует на клик на др элементы);
+//     открывает слайдер (lightbox)    
+function onGalleryCardClick(evt) {
+    evt.preventDefault();
+
+    if(!evt.target.classList.contains('gallery__image')) {
+        return;
+    }
+
+    openLightbox();
+};
+
+// console.log(onGalleryCardClick);
 
 //Ф-ция - создает и открывает слайдер (lightbox - библиотека SimpleLightbox, класс SimpleLightbox, метод open()), с оригинальными (большими - original) изображениями;
 //     свойства - для описания изображений (подпись изображений):
@@ -45,6 +64,7 @@ function openLightbox() {
     lightbox.open();
 };
 
+// console.log(openLightbox);
 
 
 /*
